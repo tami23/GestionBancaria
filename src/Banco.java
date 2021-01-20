@@ -40,7 +40,7 @@ public class Banco {
     }
 
     public CuentaBancaria crearCuenta(String nif, String nombre) {
-        double saldo = (int) (Math.random() * 50);
+        double saldo = Math.random() * 50;
         Persona titular = new Persona(nif, nombre);
         long numCuenta = 1000 + cuentasBancarias.size();
         CuentaBancaria cuenta = new CuentaBancaria(numCuenta, titular);
