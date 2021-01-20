@@ -1,5 +1,3 @@
-//  FALTA transferir saldo para eliminar
-
 import java.text.DecimalFormat;
 import java.util.Scanner;
 import java.util.Set;
@@ -60,7 +58,15 @@ public class Main {
                 System.out.println("La cuenta no existe.");
             }
             if (banco1.eliminarCuenta(numCuenta) == -2) {
-                System.out.println("La cuenta tiene saldo. Transfieralo a otra cuenta para eliminarla.");
+                System.out.println("La cuenta tiene saldo. Introduzca la cuenta donde quiere transferirlo.");
+                long cuenta2 = Long.parseLong(sc.nextLine());
+                CuentaBancaria cuentaOrig = banco1.localizaCC(numCuenta);
+                CuentaBancaria cuentaDest = banco1.localizaCC(cuenta2);
+                double saldo = cuentaOrig.getSaldo();
+                cuentaOrig.sacar(saldo);
+                cuentaDest.ingresar(saldo);
+                banco1.eliminarCuenta(numCuenta);
+                System.out.println("Se ha transferido el saldo y eliminado la cuenta.");
             }
         }
     }
