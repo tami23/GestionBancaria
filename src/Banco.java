@@ -1,6 +1,3 @@
-//  FALTA datosInicio()
-
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -29,9 +26,20 @@ public class Banco {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+    
+    public void datosInicio(){
+        crearCuenta("25655845L", "Antonio Martinez");
+        crearCuenta("26512365H", "Marisa Perez");
+        crearCuenta("25655845L", "Antonio Martinez");
+        crearCuenta("21532412K", "Luis Gonzalez");
+        crearCuenta("31523641S", "Angela Lopez");
+        crearCuenta("21532412K", "Luis Gonzalez");
+        crearCuenta("31523641S", "Angela Lopez");
+        
+    }
 
     public CuentaBancaria crearCuenta(String nif, String nombre) {
-        double saldo = Math.random() * 50;
+        double saldo =(int) (Math.random() * 50);
         Persona titular = new Persona(nif, nombre);
         long numCuenta = 1000 + cuentasBancarias.size();
         CuentaBancaria cuenta = new CuentaBancaria(numCuenta, titular);

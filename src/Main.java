@@ -33,10 +33,9 @@ Crea un único objeto Banco y pásalo como parámetro a cada uno de esos método
     
 
     public static void main(String[] args) {
-  //      Persona titular = new Persona("33444666S", "Raquel Lopez");
-  //      CuentaBancaria cuenta = new CuentaBancaria(123456789, titular);
         banco1.setNombre("ING Mislata");
         banco1.setDireccion("Calle Mayor 25");
+        banco1.datosInicio();
         
         do {
             String respuesta = menu();
