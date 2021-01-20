@@ -8,11 +8,6 @@ public class Persona {
         this.NIF = nif;
         this.nombre = nombre;
     }
-
-   
-
-/*  Completa la clase con métodos get/set de cada atributo. 
-    Una vez creada la persona, no se permitirá cambiar su nif.    */ 
     
     public String getNombre() {
 

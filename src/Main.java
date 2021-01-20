@@ -101,10 +101,9 @@ Crea un único objeto Banco y pásalo como parámetro a cada uno de esos método
             for (CuentaBancaria cuenta : banco1.listarCuentas(nif)) {
                 System.out.println("Titular: " + cuenta.getTitular() + " Numero de cuenta: " + cuenta.getNumCuenta() + " Saldo: " + formatea.format(cuenta.getSaldo()) + "€");
             }
-        }
-        
-        
+        }       
     }
+    
     
     public static void operativa(){
         System.out.println("Introduzca el numero de cuenta: ");
@@ -174,6 +173,8 @@ Crea un único objeto Banco y pásalo como parámetro a cada uno de esos método
         Persona autorizado = new Persona(dni, nombre);
         if (cuenta.autorizar(autorizado)) {
             System.out.println("Se ha autorizado a: " + autorizado.getNombre());
+        }else{
+            System.out.println("La persona ya está autorizada.");
         }
         
     }
