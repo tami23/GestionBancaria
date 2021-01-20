@@ -1,42 +1,21 @@
+//  FALTA INFORMACION EN crearCuenta
+//  FALTA transferir saldo para eliminar
+
 import java.text.DecimalFormat;
 import java.util.Scanner;
 import java.util.Set;
 
 public class Main {
-    
-/*  Crea el programa Principal (main) que gestiona un solo banco y todas sus posibles cuentas, 
-    sus datos y su operativa. 
-Crea un método static para cada una de las opciones del menú, 
-donde solicitarás los datos según la operación solicitada 
-e invocar al método correspondiente de la clase Banco.
-
-Crea un único objeto Banco y pásalo como parámetro a cada uno de esos métodos static: 
-    Crear cuenta bancaria, recoge los datos del titular y se los transmite al método crearCuenta() de banco. Informaremos del número de cuenta asignado y del saldo de regalo.
-    Eliminar cuenta bancaria. Solicita el número de cuenta a borrar y se lo pasará al eliminarCuenta(). Si no se ha borrado porque tiene saldo, se ofrecerá la posibilidad de transferir ese dinero a otra cuenta y proceder a borrar la cuenta
-    Listar información de las cuentas de un titular concreto. Indicando su saldo total.
-    Operativa sobre una cuenta bancaria.
-
-        En primer lugar, solicitaremos el nº de cuenta sobre la que actuaremos, 
-        localizaremos esa cuenta mediante localizaCC() y la pasaremos  como parámetro a los métodos static:
-            Ingresar dinero
-            Sacar dinero
-            Autorizar persona
-            Desautorizar persona
-            Ver información de la cuenta
-
-*/    
 
     static Scanner sc = new Scanner(System.in);
     static DecimalFormat formatea = new DecimalFormat("###,###.##");
     static Banco banco1 = new Banco();
-        
-    
 
     public static void main(String[] args) {
         banco1.setNombre("ING Mislata");
         banco1.setDireccion("Calle Mayor 25");
         banco1.datosInicio();
-        
+
         do {
             String respuesta = menu();
             switch (respuesta) {
@@ -52,7 +31,7 @@ Crea un único objeto Banco y pásalo como parámetro a cada uno de esos método
                 case "4": //OPERAR
                     operativa();
                     break;
-                case "0":
+                case "0": //SALIR
                     System.out.println("Gracias por usar nuestra aplicacion");
                     return;
                 default:
@@ -61,10 +40,8 @@ Crea un único objeto Banco y pásalo como parámetro a cada uno de esos método
 
         } while (true);
 
-
-
     }
-    
+
     public static void crearCuenta() {
         System.out.println("Introduce el nif del titular: ");
         String nif = sc.nextLine();
@@ -73,12 +50,12 @@ Crea un único objeto Banco y pásalo como parámetro a cada uno de esos método
         banco1.crearCuenta(nif, nombre);
     }
     
-    public static void eliminarCuenta(){
+    public static void eliminarCuenta() {
         System.out.println("Numero de la cuenta a eliminar: ");
         long numCuenta = Long.parseLong(sc.nextLine());
         if (banco1.eliminarCuenta(numCuenta) == 0) {
             System.out.println("La cuenta se ha eliminado correctamente.");
-        }else{
+        } else {
             if (banco1.eliminarCuenta(numCuenta) == -1) {
                 System.out.println("La cuenta no existe.");
             }
@@ -87,28 +64,27 @@ Crea un único objeto Banco y pásalo como parámetro a cada uno de esos método
             }
         }
     }
-    
-    public static void listarCuentas(){
+
+    public static void listarCuentas() {
         System.out.println("Introduzca el nif del titular: ");
         String nif = sc.nextLine();
         Set<CuentaBancaria> lista;
-        
-        lista= banco1.listarCuentas(nif);
+
+        lista = banco1.listarCuentas(nif);
         if (lista.isEmpty()) {
             System.out.println("No existe ninguna cuenta con el nif " + nif);
-        }else{
+        } else {
             for (CuentaBancaria cuenta : banco1.listarCuentas(nif)) {
                 System.out.println("Titular: " + cuenta.getTitular() + " Numero de cuenta: " + cuenta.getNumCuenta() + " Saldo: " + formatea.format(cuenta.getSaldo()) + "€");
             }
-        }       
+        }
     }
-    
-    
-    public static void operativa(){
+
+    public static void operativa() {
         System.out.println("Introduzca el numero de cuenta: ");
         long nCuenta = Long.parseLong(sc.nextLine());
         CuentaBancaria cuenta = banco1.localizaCC(nCuenta);
-        
+
         do {
             String respuesta = menuOperativa();
             switch (respuesta) {
@@ -127,17 +103,17 @@ Crea un único objeto Banco y pásalo como parámetro a cada uno de esos método
                 case "5": //DESAUTORIZAR
                     desautorizar(cuenta);
                     break;
-                case "0":
+                case "0": //VOLVER
                     return;
                 default:
                     System.out.println("Debe seleccionar un numero correcto");
             }
 
         } while (true);
-        
+
     }
-    
-    public static String menu(){
+
+    public static String menu() {
         String respuesta;
         System.out.println("ING MISLATA -- GESTION BANCARIA");
         System.out.println("1- Crear cuenta.");
@@ -163,8 +139,8 @@ Crea un único objeto Banco y pásalo como parámetro a cada uno de esos método
 
         return respuesta;
     }
-    
-    public static void autorizar(CuentaBancaria cuenta){
+
+    public static void autorizar(CuentaBancaria cuenta) {
         System.out.println("Nif de la persona que desea autorizar: ");
         String dni = sc.nextLine();
         System.out.println("Nombre de la persona que desea autorizar: ");
@@ -172,24 +148,23 @@ Crea un único objeto Banco y pásalo como parámetro a cada uno de esos método
         Persona autorizado = new Persona(dni, nombre);
         if (cuenta.autorizar(autorizado)) {
             System.out.println("Se ha autorizado a: " + autorizado.getNombre());
-        }else{
+        } else {
             System.out.println("La persona ya está autorizada.");
         }
-        
+
     }
-    
-    
-    public static void desautorizar (CuentaBancaria cuenta){
+
+    public static void desautorizar(CuentaBancaria cuenta) {
         System.out.println("Nif de la persona que desea desautorizar: ");
         String dni = sc.nextLine();
-        if (cuenta.desautorizar(dni)==true) {
+        if (cuenta.desautorizar(dni) == true) {
             System.out.println("Se ha desautorizado correctamente.");
-        }else{
+        } else {
             System.out.println("La persona no está autorizada.");
         }
     }
 
-    public static void ingresar(CuentaBancaria cuenta) { //Paso por referencia del objeto cuenta (es el original)      
+    public static void ingresar(CuentaBancaria cuenta) {
         System.out.println("INGRESAR DINERO");
         System.out.println("¿Cuánto dinero desea ingresar?");
         double saldo = Double.parseDouble(sc.nextLine());
@@ -211,13 +186,13 @@ Crea un único objeto Banco y pásalo como parámetro a cada uno de esos método
             System.out.println("No hay suficiente dinero en la cuenta para sacar " + formatea.format(saldo) + "€.\n");
         }
     }
-    
-    public static void informacion(CuentaBancaria cuenta){
+
+    public static void informacion(CuentaBancaria cuenta) {
         System.out.println("VER INFORMACION\nAquí tiene la información solicitada");
         System.out.println("Nº cuenta: " + cuenta.getNumCuenta() + " - " + cuenta.getTitular());
         System.out.println(cuenta.verAutorizados());
         System.out.println("Saldo: " + formatea.format(cuenta.getSaldo()) + "€\n");
-        
+
     }
 
 }
