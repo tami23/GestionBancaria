@@ -45,7 +45,8 @@ public class Banco {
         long numCuenta = 1000 + cuentasBancarias.size();
         CuentaBancaria cuenta = new CuentaBancaria(numCuenta, titular);
         cuenta.ingresar(saldo);
-        return cuentasBancarias.put(numCuenta, cuenta);
+        cuentasBancarias.put(numCuenta, cuenta);
+        return cuenta;
     }
 
     public int eliminarCuenta(long numCuenta) {

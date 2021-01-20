@@ -1,4 +1,3 @@
-//  FALTA INFORMACION EN crearCuenta
 //  FALTA transferir saldo para eliminar
 
 import java.text.DecimalFormat;
@@ -47,7 +46,8 @@ public class Main {
         String nif = sc.nextLine();
         System.out.println("Introduce el nombre del titular: ");
         String nombre = sc.nextLine();
-        banco1.crearCuenta(nif, nombre);
+        CuentaBancaria cuenta = banco1.crearCuenta(nif, nombre);
+        System.out.println("Numero de cuenta: " + cuenta.getNumCuenta() + ". Saldo de regalo: " + formatea.format(cuenta.getSaldo()) + "€");
     }
     
     public static void eliminarCuenta() {
