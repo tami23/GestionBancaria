@@ -23,24 +23,17 @@
     Realiza las siguientes modificaciones sobre la clase CuentaBancaria:
     
     1. (5 puntos) Añade método Persona existe(String dni), que revisa la lista de autorizados buscando una persona con el dni pasado como parámetro y si lo encuentra devuelve esa persona y sino devuelve null. Para saber si dos personas son iguales usa el método igual() de la clase Persona
- 
     2. (5 puntos) Mejora el método autorizar para que no permita almacenar más de una vez la misma persona. Haz ese control usando el método existe() anterior. Debe devolver true si ha autorizado a la persona, sino devolver false.
-    
     3. (5 puntos) Añade método boolean desautorizar(String dni) que debe comprobar que existe ese dni y eliminarlo de la lista de autorizados, en este caso devuelve true, sino devuelve false.
 
   **BANCO - TOTAL 40 puntos**
 
     (3 puntos) Crea la clase Banco con un atributo para el nombre y dirección del banco, y otro para almacenar todas sus cuentas bancarias (MAP con clave el nº de cuenta y valor el objeto CuentaBancaria). Solamente deberán existir los métodos get/set para los atributos nombre y dirección del banco.
     Deberás crear los siguientes métodos que representan a las acciones sobre las cuentas del banco:
-    
     1. (11 puntos) CuentaBancaria crearCuenta(String nif, String nombre), crea y almacena una nueva cuenta bancaria con los datos proporcionados. El número de cuenta será asignado consecutivamente empezando en 1000. Regalaremos saldo a nuestros clientes, la cantidad será de forma aleatoria con un máximo de 50€.
-    
     2. (8 puntos) int eliminarCuenta(long numCuenta), devuelve 0 si la cuenta ha sido eliminada, -1 si no existe y -2 si tiene saldo.
-    
     3. (8 puntos) Set<CuentaBancaria> listarCuentas(String nif) genera un conjunto de cuentas bancarias cuyo titular tiene como nif el pasado por parámetro.
-    
     4. (6 puntos) CuentaBancaria localizaCC(long ncuenta),   deberá localizar la cuenta bancaria cuyo nº de cuenta se corresponde con el parámetro ncuenta, sino devolverá null. La búsqueda debe ser eficente, es decir, terminar cuando se haya localizado la cuenta buscada.
-
     5. (4 puntos) void datosInicio(), debe crear varias cuentas bancarias con datos inventados para poder hacer pruebas en la aplicación e incluirlas en el atributo cuentas. Utiliza este método desde el main()
     
   **MENÚ PRINCIPAL TOTAL 30 puntos**
