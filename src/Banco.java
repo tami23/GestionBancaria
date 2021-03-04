@@ -9,6 +9,7 @@ public class Banco {
 
     private String nombre;
     private String direccion;
+    private long numCuenta = 1000;
 
     private Map<Long, CuentaBancaria> cuentasBancarias = new HashMap<>();
 
@@ -42,10 +43,10 @@ public class Banco {
     public CuentaBancaria crearCuenta(String nif, String nombre) {
         double saldo = Math.random() * 50;
         Persona titular = new Persona(nif, nombre);
-        long numCuenta = 1000 + cuentasBancarias.size();
         CuentaBancaria cuenta = new CuentaBancaria(numCuenta, titular);
         cuenta.ingresar(saldo);
         cuentasBancarias.put(numCuenta, cuenta);
+        numCuenta++;
         return cuenta;
     }
 
