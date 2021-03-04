@@ -10,7 +10,7 @@ public class Banco {
     private String nombre;
     private String direccion;
 
-    Map<Long, CuentaBancaria> cuentasBancarias = new HashMap<>();
+    private Map<Long, CuentaBancaria> cuentasBancarias = new HashMap<>();
 
     public String getNombre() {
         return nombre;
